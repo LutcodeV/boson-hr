@@ -6,6 +6,16 @@
 	padding: 0px 30px;
 	width: 100%;
 	margin: 0 auto;
+	&--inner-page {
+		max-width: 1920px;
+		padding: 0px 80px;
+	}
+	@include r(1024px) {
+		&--inner-page {
+			max-width: 1012px;
+			padding: 0px 30px;
+		}
+	}
 }
 .global-wrapper {
 	overflow: hidden;
@@ -50,6 +60,10 @@
 	}
 }
 
+.spline-viewer {
+	pointer-events: none;
+}
+
 .input {
 	padding: 12px 20px;
 	border: 1px solid #C4C4C4;
@@ -71,6 +85,7 @@
 .hero {
 	position: relative;
 	min-height: 100vh;
+	z-index: 1;
 	&__bg {
 		position: absolute;
 		top: 0;
@@ -119,6 +134,12 @@
 	&__button {
 		margin-top: 30px;
 		max-width: 278px;
+	}
+	&__row {
+		margin-top: 30px;
+		display: flex;
+		gap: 20px;
+		flex-wrap: wrap;
 	}
 	@include r(768px) {
 		&__title {
@@ -746,6 +767,337 @@
 		}
 		&__img {
 			margin-top: 30px;
+		}
+	}
+}
+
+// -= INNER PAGES =-
+
+// BLOG-PAGE
+.blog-page {
+	padding-top: 60px;
+	position: relative;
+	overflow: hidden;
+	&::before, &::after {
+		content: '';
+		display: block;
+		position: absolute;
+		border-radius: 50%;
+		background: #AEE9FF;
+		filter: blur(98px);
+		width: 460px;
+		height: 460px;
+		top: -40px;
+		right: -32px;
+	}
+	&::after {
+		width: 430px;
+		height: 430px;
+		left: -90px;
+		right: auto;
+		top: 630px;
+		background: #EADDFB;
+	}
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+		gap: 60px 40px;
+		position: relative;
+		z-index: 1;
+		&>*:nth-child(14n + 1),
+		&>*:nth-child(14n + 10) {
+			grid-column: span 2;
+			.blog-item__preview {
+				height: 495px;
+			}
+		}
+	}
+	@include r(1024px) {
+		&::before, &::after {
+			display: none;
+		}
+		&__grid {
+			display: flex;
+			flex-direction: column;
+			gap: 30px;
+		}
+		&>* {
+			.blog-item__preview {
+				height: 315px !important;
+			}
+		}
+	}
+}
+
+// VACANCIES-BANNER
+.vacancies-banner {
+	margin-top: 100px;
+	background: #FBFBFB;
+	padding: 150px 0;
+	.container {
+		display: flex;
+		gap: 20px 50px;
+		flex-wrap: wrap;
+	}
+	&__col {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+	&__text {
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 26px; /* 162.5% */
+	}
+	&__title {
+		position: relative;
+		&::before {
+			content: '';
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			background: var(--LIGHT-BLUE);
+			top: -16px;
+			left: -36px;
+		}
+	}
+	&__button {
+		margin-top: auto;
+	}
+	@include r(768px) {
+		padding: 60px 0px;
+		margin-top: 60px;
+		&__title {
+			&::before {
+				display: none;
+			}
+		}
+	}
+}
+
+// ARTICLE-PAGE
+.article-page {
+	margin-top: 60px;
+	.container {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+	&__header {
+
+	}
+	&__link {
+		color: #00ADEE;
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 27px;
+		text-transform: uppercase;
+	}
+	&__date {
+		color: #BBB;
+		font-size: 14px;
+		margin-top: 40px;
+		font-weight: 500;
+		line-height: 140%;
+		letter-spacing: -0.28px;
+	}
+	&__title {
+		color: #231F20;
+		margin-top: 12px;
+		font-size: 48px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 120%; /* 57.6px */
+		letter-spacing: -1.92px;
+	}
+	&__text {
+		color: #000;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 180%; /* 36px */
+		letter-spacing: -0.4px;
+	}
+	@include r(768px) {
+		.container {
+			gap: 20px;
+		}
+		&__title {
+			font-size: 24px;
+		}
+		&__text {
+			font-size: 16px;
+		}
+	}
+}
+
+// VACANCIES-PAGE
+.vacancies-page {
+	padding-top: 60px;
+	position: relative;
+	overflow: hidden;
+	&::before, &::after {
+		content: '';
+		display: block;
+		position: absolute;
+		border-radius: 50%;
+		background: #AEE9FF;
+		filter: blur(98px);
+		width: 460px;
+		height: 460px;
+		top: -40px;
+		right: -32px;
+	}
+	&::after {
+		width: 430px;
+		height: 430px;
+		left: -90px;
+		right: auto;
+		top: 630px;
+		background: #EADDFB;
+	}
+	@include r(1024px) {
+		&::before, &::after {
+			display: none;
+		}
+	}
+}
+
+// VACANCY-PAGE
+.vacancy-page {
+	margin-top: 40px;
+	position: relative;
+	&::before, &::after {
+		content: '';
+		display: block;
+		position: absolute;
+		border-radius: 50%;
+		background: #AEE9FF;
+		filter: blur(98px);
+		width: 460px;
+		height: 460px;
+		top: -40px;
+		right: -32px;
+	}
+	&::after {
+		width: 430px;
+		height: 430px;
+		left: -90px;
+		right: auto;
+		top: 630px;
+		background: #EADDFB;
+	}
+	&__title {
+		color: #231F20;
+		font-size: 36px;
+		font-weight: 700;
+		line-height: 120%; /* 43.2px */
+		&:not(:first-child) {
+			margin-top: 40px;
+		}
+	}
+	&__info {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px 40px;
+		margin-top: 18px;
+	}
+	&__info-text {
+		color: #231F20;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 120%; /* 19.2px */
+	}
+	&__list {
+		display: flex;
+		flex-direction: column;
+		margin-top: 24px;
+		gap: 20px;
+	}
+	&__list-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		color: #231F20;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 120%; /* 19.2px */
+		&::before {
+			content: '';
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			min-width: 10px;
+			min-height: 10px;
+			margin-top: 4px;
+			background: var(--LIGHT-BLUE);
+			display: block;
+		}
+	}
+	&__text {
+		margin-top: 28px;
+		color: #231F20;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 160%; /* 25.6px */
+	}
+	@include r(1024px) {
+		&::before, &::after {
+			display: none;
+		}
+	}
+}
+
+// VACANCY-BANNER
+.vacancy-banner {
+	position: relative;
+	z-index: 1;
+	margin-top: 100px;
+	background: #FBFBFB;
+	padding: 150px 0;
+	.container {
+		display: flex;
+		gap: 20px 50px;
+		flex-wrap: wrap;
+	}
+	&__row {
+		display: flex;
+		gap: 20px;
+		flex-wrap: wrap;
+	}
+	&__col {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+	&__text {
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 26px; /* 162.5% */
+	}
+	&__title {
+		position: relative;
+		&::before {
+			content: '';
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			background: var(--LIGHT-BLUE);
+			top: -16px;
+			left: -36px;
+		}
+	}
+	&__button {
+		margin-top: auto;
+	}
+	@include r(768px) {
+		padding: 60px 0px;
+		margin-top: 60px;
+		&__title {
+			&::before {
+				display: none;
+			}
 		}
 	}
 }

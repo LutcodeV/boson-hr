@@ -8,3 +8,31 @@ if(inputsTypeTel.length > 0) {
 		}).mask(input);
 	})
 }
+
+// VACANCIES FILTER
+const vacanciesFilter = document.querySelectorAll('[data-vacancy-filter]');
+if(vacanciesFilter.length > 0) {
+	vacanciesFilter.forEach((button) => {
+		const filter = button.getAttribute('data-vacancy-filter');
+		const vacancies = document.querySelectorAll('[data-vacancy-type]');
+		button.addEventListener('click', () => {
+			vacanciesFilter.forEach((button) => {
+				button.classList.remove('vacancies-filter--active');
+			})
+			button.classList.add('vacancies-filter--active');
+			if(filter === 'all') {
+				vacancies.forEach((vacancy) => {
+					vacancy.style.display = 'flex';
+				})
+			} else {
+				vacancies.forEach((vacancy) => {
+					if(vacancy.getAttribute('data-vacancy-type') !== filter) {
+						vacancy.style.display = 'none';
+					} else {
+						vacancy.style.display = 'flex';
+					}
+				})
+			}
+		})
+	})
+}
